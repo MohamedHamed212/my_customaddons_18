@@ -1,0 +1,22 @@
+{
+    'name': 'Account Move Custom',
+    'version': '1.0',
+    'category': 'Accounting',
+    'summary': 'Add custom field to account move form view',
+    'description': 'This module adds a custom field to the journal entry form.',
+    'author': 'Mohamed Hamed',
+    'depends': ['accountant'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/ir_sequence.xml',
+        'views/views.xml',
+        'views/server_actions.xml',
+        'wizard/account_move_merge_wizard_view.xml',
+        'report/report.xml',
+        'report/account_move_merge_report.xml',
+        'report/paperformat.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mail_activity_type_read_only,access_mail_activity_type_read_only,mail.model_mail_activity_type,base.group_portal,1,1,1,1
+access_calendar_event_portal_create,access_calendar_event_portal_create,calendar.model_calendar_event,base.group_portal,1,1,1,1
+access_calendar_attendee_portal,access_calendar_attendee_portal,calendar.model_calendar_attendee,base.group_portal,1,1,1,1
+access_mail_activity_portal,access_mail_activity_portal,mail.model_mail_activity,base.group_portal,1,1,1,1

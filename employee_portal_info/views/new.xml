@@ -1,0 +1,61 @@
+<odoo>
+  <!--  My Payrolls -->
+  <template id="portal_my_home_inherit_employee_card_payrolls" inherit_id="portal.portal_my_home">
+    <xpath expr="//div[@id='portal_common_category']" position="inside">
+      <t t-call="portal.portal_docs_entry">
+        <t t-set="title">My Payrolls</t>
+        <t t-set="text">My Payrolls</t>
+        <t t-set="url" t-value="'/my/employee'"/>
+        <t t-set="config_card" t-value="True"/>
+      </t>
+    </xpath>
+  </template>
+
+  <!--  My Leaves -->
+  <template id="portal_my_home_inherit_employee_card_leaves" inherit_id="portal.portal_my_home">
+    <xpath expr="//div[@id='portal_common_category']" position="inside">
+      <t t-call="portal.portal_docs_entry">
+        <t t-set="title">My Leaves</t>
+        <t t-set="text">My Leaves</t>
+        <t t-set="url" t-value="'/my/leaves'"/>
+        <t t-set="config_card" t-value="True"/>
+      </t>
+    </xpath>
+  </template>
+
+  <!--  My Resignations -->
+<!--  <template id="portal_my_home_inherit_employee_card_resignations" inherit_id="portal.portal_my_home">-->
+<!--    <xpath expr="//div[@id='portal_common_category']" position="inside">-->
+<!--      <t t-call="portal.portal_docs_entry">-->
+<!--        <t t-set="title">My Resignations</t>-->
+<!--        <t t-set="text">My Resignations</t>-->
+<!--        <t t-set="url" t-value="'/my/resignations'"/>-->
+<!--        <t t-set="config_card" t-value="True"/>-->
+<!--      </t>-->
+<!--    </xpath>-->
+<!--  </template>-->
+
+  <!--  My Penalties -->
+<!--  <template id="portal_my_home_inherit_employee_card_deductions" inherit_id="portal.portal_my_home">-->
+<!--    <xpath expr="//div[@id='portal_common_category']" position="inside">-->
+<!--      <t t-call="portal.portal_docs_entry">-->
+<!--        <t t-set="title">My Penalties</t>-->
+<!--        <t t-set="text">My Penalties</t>-->
+<!--        <t t-set="url" t-value="'/my/deductions'"/>-->
+<!--        <t t-set="config_card" t-value="True"/>-->
+<!--      </t>-->
+<!--    </xpath>-->
+<!--  </template>-->
+
+  <!--  My Attendance -->
+  <template id="portal_my_home_inherit_employee_card_attendance" inherit_id="portal.portal_my_home">
+    <xpath expr="//div[@id='portal_common_category']" position="inside">
+      <t t-call="portal.portal_docs_entry">
+        <t t-set="title">My Attendance</t>
+        <t t-set="text">My Attendance</t>
+        <t t-set="url" t-value="'/my/attendance'"/>
+        <t t-set="config_card" t-value="True"/>
+      </t>
+    </xpath>
+  </template>
+</odoo>

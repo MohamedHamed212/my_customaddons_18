@@ -1,0 +1,27 @@
+<odoo>
+  <template id="portal_resignation_detail" name="Contract Detail">
+    <t t-call="portal.portal_layout">
+      <div class="container my-5">
+        <div class="card shadow-sm">
+          <div class="card-header bg-info text-white">
+            <h4><i class="fa fa-file-alt me-2"></i>Contract Detail: <t t-esc="contract.name"/></h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Employee:</strong> <t t-esc="employee.name"/></li>
+              <li class="list-group-item"><strong>Job Position:</strong> <t t-esc="contract.job_id.name"/></li>
+              <li class="list-group-item"><strong>Department:</strong> <t t-esc="contract.department_id.name"/></li>
+              <li class="list-group-item"><strong>Start Date:</strong> <t t-esc="contract.date_start"/></li>
+              <li class="list-group-item"><strong>End Date:</strong> <t t-esc="contract.date_end or 'Open-ended'"/></li>
+              <li class="list-group-item"><strong>Salary:</strong> <t t-esc="contract.wage"/> EGP</li>
+              <li class="list-group-item"><strong>Status:</strong> <t t-esc="contract.state"/></li>
+            </ul>
+            <a href="/my/resignations" class="btn btn-secondary mt-4">
+              <i class="fa fa-arrow-left me-1"></i>Back to Contracts
+            </a>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+</odoo>

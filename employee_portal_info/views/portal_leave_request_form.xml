@@ -1,0 +1,60 @@
+<odoo>
+  <template id="portal_leave_request_form" name="Leave Request Form">
+    <t t-call="portal.portal_layout">
+      <div class="container my-5">
+        <h2 class="mb-4 text-center">Request Time Off</h2>
+
+        <t t-if="leave_types">
+          <form action="/my/leaves/request/submit" method="post" class="form">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+            <table class="table table-bordered table-sm w-75 mx-auto">
+              <tbody>
+                <tr>
+                  <th style="width: 30%;">Leave Type</th>
+                  <td>
+                    <select name="leave_type_id" class="form-control" required="required">
+                      <t t-foreach="leave_types" t-as="lt">
+                        <option t-att-value="lt.id">
+                          <t t-esc="lt.name"/>
+                          <t t-if="lt.virtual_remaining_leaves is not False">
+                            — <t t-esc="lt.virtual_remaining_leaves"/> day(s)
+                          </t>
+                        </option>
+                      </t>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Start Date</th>
+                  <td><input type="date" name="date_from" class="form-control" required="required"/></td>
+                </tr>
+                <tr>
+                  <th>End Date</th>
+                  <td><input type="date" name="date_to" class="form-control" required="required"/></td>
+                </tr>
+                <tr>
+                  <th>Description</th>
+                  <td><textarea name="description" class="form-control" rows="3"></textarea></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="text-center mt-3">
+              <button type="submit" class="btn btn-success px-5">Submit</button>
+            </div>
+            <div class="text-center mt-4">
+              <a href="/my/leaves" class="btn btn-secondary">Back to Leaves</a>
+            </div>
+          </form>
+        </t>
+
+        <t t-else="">
+          <div class="alert alert-warning text-center">
+            No available leave types at the moment. Please contact HR.
+          </div>
+        </t>
+      </div>
+    </t>
+  </template>
+</odoo>

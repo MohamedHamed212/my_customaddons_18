@@ -1,0 +1,41 @@
+<odoo>
+  <template id="portal_deductions_template" name="Deductions Info Page">
+    <t t-call="portal.portal_layout">
+      <div class="container my-5">
+        <h2 class="text-center mb-4">My Deductions</h2>
+
+        <t t-if="deductions">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered">
+              <thead class="thead-dark bg-primary text-white">
+                <tr class="text-center">
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Code</th>
+                  <th>Rule</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-foreach="deductions" t-as="deduction">
+                  <tr>
+                    <td><t t-esc="deduction.name" /></td>
+                    <td class="text-end"><t t-esc="'{:,.2f}'.format(deduction.total)" /></td>
+                    <td class="text-center"><t t-esc="deduction.code" /></td>
+                    <td><t t-esc="deduction.salary_rule_id.name" /></td>
+                    <td><t t-esc="deduction.category_id.name" /></td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+          </div>
+        </t>
+        <t t-else="">
+          <div class="alert alert-info text-center mt-4">
+            No deductions found for your latest payslip.
+          </div>
+        </t>
+      </div>
+    </t>
+  </template>
+</odoo>

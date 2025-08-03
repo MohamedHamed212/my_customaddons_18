@@ -1,0 +1,25 @@
+{
+    'name': "Employee Portal Info",
+    'version': '1.0',
+    'category': 'Portal',
+    'summary': "Portal for Employee Payrolls, Leaves,  Attendance, Resignations and Penalties",
+    'author': "Mohamed Hamed",
+    'depends': ['base', 'hr', 'hr_payroll', 'hr_holidays', 'website', 'portal','hr_attendance', 'mail'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/employee_view.xml',
+        'views/new.xml',
+        'views/portal_templates.xml',
+        'views/portal_payslip_detail.xml',
+        'views/portal_leave.xml',
+        'views/portal_leave_detail_template.xml',
+        'views/portal_leave_request_form.xml',
+        'views/portal_resignation_template.xml',
+        'views/portal_contract_detail.xml',
+        'views/my_penalties.xml',
+        'views/portal_attendance_template.xml',
+        'views/portal_attendance_detail.xml',
+
+    ],
+    'application': False,
+}

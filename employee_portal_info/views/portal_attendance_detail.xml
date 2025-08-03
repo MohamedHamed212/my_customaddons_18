@@ -1,0 +1,54 @@
+<odoo>
+  <template id="portal_attendance_detail" name="Attendance Detail">
+    <t t-call="portal.portal_layout">
+      <div class="container my-5">
+        <h2 class="mb-4">
+          <i class="fa fa-info-circle me-2"></i>
+          Attendance Details
+        </h2>
+
+        <table class="table table-bordered">
+          <tr>
+            <th>Check In</th>
+            <td>
+              <t t-if="attendance.check_in">
+                <t t-esc="attendance.check_in.strftime('%Y-%m-%d %H:%M')" />
+              </t>
+              <t t-if="not attendance.check_in">
+                <span class="text-muted">-</span>
+              </t>
+            </td>
+          </tr>
+          <tr>
+            <th>Check Out</th>
+            <td>
+              <t t-if="attendance.check_out">
+                <t t-esc="attendance.check_out.strftime('%Y-%m-%d %H:%M')" />
+              </t>
+              <t t-if="not attendance.check_out">
+                <span class="text-warning">Not Checked Out</span>
+              </t>
+            </td>
+          </tr>
+          <tr>
+            <th>Worked Hours</th>
+            <td>
+              <t t-if="attendance.worked_hours">
+                <t t-set="hours" t-value="int(attendance.worked_hours)" />
+                <t t-set="minutes" t-value="int((attendance.worked_hours - hours) * 60)" />
+                <span><t t-esc="str(hours) + 'h ' + str(minutes) + 'm'" /></span>
+              </t>
+              <t t-if="not attendance.worked_hours">
+                <span class="text-muted">-</span>
+              </t>
+            </td>
+          </tr>
+        </table>
+
+        <a href="/my/attendance" class="btn btn-secondary mt-4">
+          <i class="fa fa-arrow-left me-1"></i> Back to Attendance List
+        </a>
+      </div>
+    </t>
+  </template>
+</odoo>

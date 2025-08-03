@@ -1,0 +1,50 @@
+<odoo>
+  <template id="portal_leave_template" name="Leave Info Page">
+    <t t-call="portal.portal_layout">
+      <div class="container my-5">
+        <h2 class="mb-4 text-center">My Leaves</h2>
+
+        <div class="text-end mb-4">
+          <a href="/my/leaves/request" class="btn btn-success">
+            <i class="fa fa-plus me-1"/> Request Time Off
+          </a>
+        </div>
+
+        <t t-if="leaves">
+          <table class="table table-hover table-bordered text-center align-middle">
+            <thead class="table-primary">
+              <tr>
+                <th>Leave Type</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Days</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="leaves" t-as="leave">
+                <tr>
+                  <td>
+                    <a t-attf-href="/my/leaves/{{ leave.id }}">
+                      <t t-esc="leave.holiday_status_id.name"/>
+                    </a>
+                  </td>                  <td><t t-esc="leave.request_date_from"/></td>
+                  <td><t t-esc="leave.request_date_to"/></td>
+                  <td><t t-esc="leave.number_of_days"/></td>
+                  <td>
+                    <span t-if="leave.state == 'confirm'" class="badge bg-warning text-dark">To Approve</span>
+                    <span t-if="leave.state == 'validate'" class="badge bg-success">Approved</span>
+                    <span t-if="leave.state == 'refuse'" class="badge bg-danger">Refused</span>
+                    <span t-if="leave.state not in ['confirm', 'validate', 'refuse']" class="badge bg-secondary">
+                      <t t-esc="leave.state"/>
+                    </span>
+                  </td>
+                </tr>
+              </t>
+            </tbody>
+          </table>
+        </t>
+      </div>
+    </t>
+  </template>
+</odoo>

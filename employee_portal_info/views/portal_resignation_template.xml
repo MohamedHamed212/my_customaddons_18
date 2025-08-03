@@ -1,0 +1,52 @@
+<odoo>
+  <template id="portal_resignation_template" name="My Resignations Page">
+    <t t-call="portal.portal_layout">
+      <div class="container my-5">
+        <div class="text-center mb-4">
+          <h2><i class="fa fa-file-contract me-2"></i>Previous Contracts</h2>
+        </div>
+
+        <t t-if="old_contracts">
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered shadow-sm">
+              <thead class="bg-primary text-white text-center">
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Job Position</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Salary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-foreach="enumerate(old_contracts)" t-as="contract_data">
+                  <tr>
+                    <td class="text-center"><t t-esc="contract_data[0] + 1"/></td>
+                    <td>
+                      <a t-att-href="'/my/resignations/%s' % contract_data[1].id">
+                        <t t-esc="contract_data[1].name"/>
+                      </a>
+                    </td>
+                    <td><t t-esc="contract_data[1].department_id.name or 'N/A'"/></td>
+                    <td><t t-esc="contract_data[1].job_id.name or 'N/A'"/></td>
+                    <td><t t-esc="contract_data[1].date_start"/></td>
+                    <td><t t-esc="contract_data[1].date_end or 'Open-ended'"/></td>
+                    <td><strong><t t-esc="contract_data[1].wage"/> EGP</strong></td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+          </div>
+        </t>
+
+        <t t-if="not old_contracts">
+          <div class="alert alert-info text-center mt-4">
+            No previous contracts found.
+          </div>
+        </t>
+      </div>
+    </t>
+  </template>
+</odoo>

@@ -1,0 +1,141 @@
+<!--<odoo>-->
+<!--    <template id="custom_invoice_header_template" inherit_id="account.report_invoice_document">-->
+<!--        <xpath expr="//div[contains(@class, 'row')]" position="replace">-->
+<!--            <div class="container" style="margin-bottom: 20px; font-size: 14px;" t-attf-lang="es_ES">-->
+
+<!--                <div class="row" style="align-items: center; margin-bottom: 10px;">-->
+<!--                    <t t-if="o.company_id.logo">-->
+<!--                        <div class="col-4">-->
+<!--                            <img t-att-src="image_data_uri(o.company_id.logo)"-->
+<!--                                 style="max-height: 100px; max-width: 100%;"/>-->
+<!--                        </div>-->
+<!--                    </t>-->
+<!--                    <div class="col-4">-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>Factura de proveedor:</strong></t> <t t-else=""><strong>Vendor Bill:</strong> </t>-->
+<!--                            <span t-esc="o.name or 'N/A'"/></p>-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>Referencia de pago:</strong></t> <t t-else=""><strong>Payment Reference:</strong> </t><span t-esc="o.payment_reference or 'N/A'"/></p>-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>Fecha de factura:</strong></t> <t t-else="">-->
+<!--                            <strong>Invoice Date:</strong> </t><span t-esc="o.invoice_date.strftime('%Y-%m-%d') if o.invoice_date else 'N/A'"/></p>-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>Fecha de impresión:</strong></t>-->
+<!--                            <t t-else=""><strong>Printing Date:</strong></t>-->
+<!--                            <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')" class="m-0"/>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                    <div class="col-4">-->
+<!--                        <div class="mt16 text-center">-->
+<!--                            <t t-if="o.name">-->
+<!--                                <span t-field="o.name" t-options='{"widget": "barcode", "type": "Code128"}'-->
+<!--                                      style="font-size:16px;"/>-->
+<!--                            </t>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <hr style="border-top: 1px solid #000; margin: 10px 0;"/>-->
+
+<!--                <div class="row">-->
+<!--                        <div class="col-4">-->
+<!--                            <p>-->
+<!--                                <strong>BETALMUNE S.L:</strong>-->
+<!--                                <br/>-->
+<!--                                <span t-esc="o.company_id.name"/>-->
+<!--                            </p>-->
+<!--                            <p>-->
+<!--                                <strong>Email:</strong>-->
+<!--                                <span t-esc="o.company_id.email or 'N/A'"/>-->
+<!--                            </p>-->
+<!--                            <p>-->
+<!--                                <t t-if="o.partner_id.lang == 'es_ES'">-->
+<!--                                    <strong>Teléfono:</strong>-->
+<!--                                </t>-->
+<!--                                <t t-else="">-->
+<!--                                    <strong>Phone:</strong>-->
+<!--                                </t>-->
+<!--                                <span t-esc="o.company_id.phone or 'N/A'"/>-->
+<!--                            </p>-->
+<!--                            <p>-->
+<!--                                <t t-if="o.partner_id.lang == 'es_ES'">-->
+<!--                                    <strong>Dirección:</strong>-->
+<!--                                </t>-->
+<!--                                <t t-else="">-->
+<!--                                    <strong>Address:</strong>-->
+<!--                                </t>-->
+<!--                                <span t-esc="o.company_id.street,street2,city,state,zip or 'N/A'"/>-->
+<!--                            </p>-->
+<!--                            <p>-->
+<!--                                <t t-if="o.partner_id.lang == 'es_ES'">-->
+<!--                                    <strong>CIF:</strong>-->
+<!--                                </t>-->
+<!--                                <t t-else="">-->
+<!--                                    <strong>Tax ID:</strong>-->
+<!--                                </t>-->
+<!--                                <span t-esc="o.company_id.vat or 'N/A'"/>-->
+<!--                            </p>-->
+<!--                        </div>-->
+
+<!--                    <div class="col-4">-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>Datos del cliente:</strong></t>-->
+<!--                            <t t-else=""><strong>Client Data:</strong></t><br/>-->
+<!--                            <span t-esc="o.partner_id.name or 'N/A'"/>-->
+<!--                        </p>-->
+<!--                        <p><span t-esc="o.partner_id.contact_address_inline or 'N/A'"/></p>-->
+<!--                        <p><strong>Email:</strong> <span t-esc="o.partner_id.email or 'N/A'"/></p>-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>Teléfono:</strong></t><t t-else="">-->
+<!--                            <strong>Phone:</strong>-->
+<!--                            </t>-->
+<!--                            <span t-esc="o.partner_id.phone or 'N/A'"/></p>-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>ID de usuario:</strong></t>-->
+<!--                            <t t-else=""><strong>User ID:</strong></t>-->
+<!--                            <span t-esc="o.partner_id.id or 'N/A'"/>-->
+<!--                        </p>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-4">-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>Dirección de entrega:</strong></t>-->
+<!--                            <t t-else=""><strong>Delivery Address:</strong></t>-->
+<!--                            <span t-esc="o.partner_shipping_id.name or 'N/A'"/>-->
+<!--                        </p>-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>Email:</strong></t>-->
+<!--                            <t t-else=""><strong>Email:</strong></t>-->
+<!--                            <span t-esc="o.partner_shipping_id.email or 'N/A'"/>-->
+<!--                        </p>-->
+<!--                        <p>-->
+<!--                            <t t-if="o.partner_id.lang == 'es_ES'"><strong>Telefono:</strong></t>-->
+<!--                            <t t-else=""><strong>Phone:</strong></t>-->
+<!--                            <span t-esc="o.partner_shipping_id.phone or 'N/A'"/>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </xpath>-->
+<!--    </template>-->
+<!--</odoo>-->
+
+<!--    <template id="custom_header_merge_invoice">-->
+<!--        <div class="header" style="margin-bottom: 20px; font-size: 12px;">-->
+<!--            <div style="width: 100%; display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 10px;">-->
+<!--                <div>-->
+<!--                    <strong>Company:</strong>-->
+<!--                    <span t-esc="res_company.name"/>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <strong>Customer:</strong>-->
+<!--                    <span t-esc="doc.partner_id.name or 'N/A'"/>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <strong>Print Date:</strong>-->
+<!--                    <span t-esc="doc.create_date.strftime('%Y-%m-%d %H:%M') if doc.create_date else ''"/>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </template>-->
+

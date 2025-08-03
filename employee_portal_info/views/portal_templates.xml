@@ -1,0 +1,96 @@
+<odoo>
+  <template id="portal_employee_template" name="Employee Info Page">
+    <t t-call="portal.portal_layout">
+      <div class="container my-5">
+
+        <div class="card shadow-sm mb-5">
+          <div class="card-header bg-primary text-white">
+            <h4><i class="fa fa-id-badge me-2"></i>Employee Information</h4>
+          </div>
+          <t t-if="employee">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <strong>Name:</strong> <span class="text-muted"><t t-esc="employee.name"/></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <strong>Job Title:</strong> <span class="text-muted"><t t-esc="employee.job_title"/></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <strong>Work Email:</strong> <span class="text-muted"><t t-esc="employee.work_email"/></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <strong>Work Phone:</strong> <span class="text-muted"><t t-esc="employee.work_phone"/></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <strong>Base Salary:</strong>
+                  <span class="badge bg-success"><t t-esc="employee.contract_id.wage"/> EGP</span>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <strong>Marital Status:</strong> <span class="text-muted"><t t-esc="employee.marital"/></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <strong>Contract Duration:</strong>
+                  <span class="text-muted">
+                    <t t-if="employee.contract_id">
+                      <t t-esc="employee.contract_id.date_start"/> -
+                      <t t-esc="employee.contract_id.date_end or 'Open-ended'" />
+                    </t>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </t>
+        </div>
+
+        <div class="card shadow-sm">
+          <div class="card-header bg-secondary text-white">
+            <h4><i class="fa fa-money-check-alt me-2"></i>All Payslips</h4>
+          </div>
+          <t t-if="payslips">
+            <div class="card-body p-0">
+              <table class="table table-hover table-striped m-0">
+                <thead class="table-dark text-center">
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Period</th>
+                    <th>Net Salary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="enumerate(payslips)" t-as="payslip_data">
+                    <tr>
+                      <td class="text-center">
+                        <t t-esc="payslip_data[0] + 1"/>
+                      </td>
+                      <td>
+                        <a t-att-href="'/my/employee/payslip/%s' % payslip_data[1].id">
+                          <t t-esc="payslip_data[1].name"/>
+                        </a>
+                      </td>
+                      <td class="text-center">
+                        <t t-esc="payslip_data[1].date_from"/> → <t t-esc="payslip_data[1].date_to"/>
+                      </td>
+                      <td class="text-end">
+                        <strong>
+                          <t t-esc="payslip_data[1].line_ids.filtered(lambda l: l.code == 'NET')[:1].total if payslip_data[1].line_ids.filtered(lambda l: l.code == 'NET') else 0"/> EGP
+                        </strong>
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </t>
+          <t t-if="not payslips">
+            <div class="card-body">
+              <div class="alert alert-warning text-center">No payslips found.</div>
+            </div>
+          </t>
+        </div>
+
+      </div>
+    </t>
+  </template>
+</odoo>

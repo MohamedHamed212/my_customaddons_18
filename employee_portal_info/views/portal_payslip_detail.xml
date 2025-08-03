@@ -1,0 +1,42 @@
+<odoo>
+  <template id="portal_payslip_detail" name="Payslip Detail">
+    <t t-call="portal.portal_layout">
+      <div class="container my-5">
+        <div class="card shadow-sm">
+          <div class="card-header bg-info text-white">
+            <h4><i class="fa fa-file-invoice-dollar me-2"></i>Payslip: <t t-esc="payslip.name"/></h4>
+          </div>
+          <div class="card-body">
+            <p><strong>Period:</strong> <t t-esc="payslip.date_from"/> → <t t-esc="payslip.date_to"/></p>
+            <p><strong>Contract:</strong> <t t-esc="payslip.contract_id.name or 'N/A'"/></p>
+            <p><strong>Employee:</strong> <t t-esc="employee.name"/></p>
+
+            <table class="table table-striped mt-4">
+              <thead class="table-dark text-center">
+                <tr>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Code</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-foreach="payslip_lines" t-as="line">
+                  <tr>
+                    <td><t t-esc="line.name"/></td>
+                    <td><t t-esc="line.category_id.name"/></td>
+                    <td><t t-esc="line.code"/></td>
+                    <td class="text-end"><strong><t t-esc="line.total"/> EGP</strong></td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+
+            <a href="/my/employee" class="btn btn-secondary mt-3">
+              <i class="fa fa-arrow-left me-1"></i>Back to Employee Page</a>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+</odoo>
