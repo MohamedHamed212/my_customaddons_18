@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
@@ -33,5 +33,23 @@ class AccountMove(models.Model):
         string="Tax Closing Report"
     )
     tax_closing_alert = fields.Boolean(string="Tax Closing Alert")
-    
+
+
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    account_display_representative_field = fields.Boolean(compute='_compute_account_display_representative_field')
+
+    @api.depends('account_fiscal_country_id.code')
+    def _compute_account_display_representative_field(self):
+        country_set = self._get_countries_allowing_tax_representative()
+        for record in self:
+            record.account_display_representative_field = record.account_fiscal_country_id.code in country_set
+
+    def _get_countries_allowing_tax_representative(self):
+        """ Returns a set containing the country codes of the countries for which
+        it is possible to use a representative to submit the tax report.
+        This function is a hook that needs to be overridden in localisation modules.
+        """
+        return set()
 
