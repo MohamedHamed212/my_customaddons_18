@@ -40,6 +40,14 @@ class ResCompany(models.Model):
 
     account_display_representative_field = fields.Boolean(compute='_compute_account_display_representative_field')
 
+    account_representative_id = fields.Many2one(
+        'res.partner',
+        string="Tax Representative"
+    )
+
+
+
+
     @api.depends('account_fiscal_country_id.code')
     def _compute_account_display_representative_field(self):
         country_set = self._get_countries_allowing_tax_representative()
