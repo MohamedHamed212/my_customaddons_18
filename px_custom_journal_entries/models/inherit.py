@@ -33,13 +33,5 @@ class AccountMove(models.Model):
         string="Tax Closing Report"
     )
     tax_closing_alert = fields.Boolean(string="Tax Closing Alert")
-
-
-class ResCompany(models.Model):
-    _inherit = 'res.company'
-
-    account_display_representative_field = fields.Boolean(
-        string="Display Account Representative",
-        default=False
-    )
+    
 
