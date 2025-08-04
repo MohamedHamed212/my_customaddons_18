@@ -12,3 +12,4 @@ class ResConfigSettings(models.TransientModel):
         'account.journal',
         string="Tax Journal"
     )
+    totals_below_sections = fields.Boolean(string="Totals Below Sections")
