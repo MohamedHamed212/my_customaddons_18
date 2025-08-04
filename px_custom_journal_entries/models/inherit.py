@@ -3,12 +3,6 @@ from odoo import fields, models
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-
-    account_display_representative_field = fields.Boolean(
-        related='company_id.account_display_representative_field',
-        readonly=False
-    )
-
     account_tax_periodicity = fields.Selection([
         ('monthly', 'Monthly'),
         ('quarterly', 'Quarterly'),
