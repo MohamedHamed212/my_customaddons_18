@@ -24,3 +24,12 @@ class ResConfigSettings(models.TransientModel):
     account_reports_show_per_company_setting = fields.Boolean(
         string="Show per company setting", config_parameter='account_reports.show_per_company_setting'
     )
+
+class AccountMove(models.Model):
+    _inherit = 'account.move'
+
+    tax_closing_report_id = fields.Many2one(
+        'account.report',
+        string="Tax Closing Report"
+    )
+
