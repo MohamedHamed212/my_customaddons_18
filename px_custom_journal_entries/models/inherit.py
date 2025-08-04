@@ -7,3 +7,4 @@ class ResConfigSettings(models.TransientModel):
         ('monthly', 'Monthly'),
         ('quarterly', 'Quarterly'),
     ], string="Tax Periodicity")
+    account_tax_periodicity_reminder_day = fields.Integer(string="Tax Reminder Day")
