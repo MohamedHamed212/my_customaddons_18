@@ -14,7 +14,7 @@ class ResConfigSettings(models.TransientModel):
 
     account_tax_periodicity_journal_id = fields.Many2one(
         'account.journal',
-        string="Tax Journal", config_parameter="account_reports.tax_journal_id", required=0
+        string="Tax Journal", config_parameter="account_reports.tax_journal_id", required=False
     )
 
     totals_below_sections = fields.Boolean(
