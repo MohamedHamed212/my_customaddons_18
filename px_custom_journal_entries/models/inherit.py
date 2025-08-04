@@ -32,4 +32,5 @@ class AccountMove(models.Model):
         'account.report',
         string="Tax Closing Report"
     )
+    tax_closing_alert = fields.Boolean(string="Tax Closing Alert")
 
