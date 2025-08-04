@@ -17,3 +17,4 @@ class AccountMoveLine(models.Model):
         string="Exclude Bank Lines",
         help="Exclude this journal entry line from being included in tax or audit reports."
     )
+

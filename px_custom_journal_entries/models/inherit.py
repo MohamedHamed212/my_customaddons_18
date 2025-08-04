@@ -3,6 +3,12 @@ from odoo import fields, models
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
+
+    account_display_representative_field = fields.Boolean(
+        related='company_id.account_display_representative_field',
+        readonly=False
+    )
+
     account_tax_periodicity = fields.Selection([
         ('monthly', 'Monthly'),
         ('quarterly', 'Quarterly'),
@@ -33,4 +39,13 @@ class AccountMove(models.Model):
         string="Tax Closing Report"
     )
     tax_closing_alert = fields.Boolean(string="Tax Closing Alert")
+
+
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    account_display_representative_field = fields.Boolean(
+        string="Display Account Representative",
+        default=False
+    )
 
