@@ -8,7 +8,12 @@ class AccountMove(models.Model):
         ('wallet', 'Wallet'),
         ('on line', 'On Line')
     ], string="Payment Type")
+
+
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
+
     exclude_bank_lines = fields.Boolean(
-        string="Exclude Bank Lines from Reports",
-        help="Exclude bank journal lines from being considered in tax reports or financial closing."
+        string="Exclude Bank Lines",
+        help="Exclude this journal entry line from being included in tax or audit reports."
     )
