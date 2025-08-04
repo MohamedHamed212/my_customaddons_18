@@ -12,7 +12,7 @@
         'views/views.xml',
         'views/server_actions.xml',
         'wizard/account_move_merge_wizard_view.xml',
-        # 'report/report.xml',
+        'report/report.xml',
         'report/account_move_merge_report.xml',
         'report/paperformat.xml',
     ],
