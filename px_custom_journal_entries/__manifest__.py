@@ -5,7 +5,7 @@
     'summary': 'Add custom field to account move form view',
     'description': 'This module adds a custom field to the journal entry form.',
     'author': 'Mohamed Hamed',
-    'depends': ['accountant'],
+    'depends': ['accountant','account_reports'],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence.xml',
